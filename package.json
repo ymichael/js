@@ -1,0 +1,15 @@
+{
+  "name": "js",
+  "version": "0.0.1",
+  "description": "Simple implementations of js constructs.",
+  "main": "karma.conf.js",
+  "author": "Michael Yong <wrong92@gmail.com>",
+  "license" 'MIT',
+  "devDependencies": {
+      "karma": "0.12.x",
+      "karma-chrome-launcher": "0.1.x",
+      "karma-firefox-launcher": "0.1.x",
+      "karma-safari-launcher": "0.1.x",
+      "karma-jasmine": "0.1.x"
+  }
+}
