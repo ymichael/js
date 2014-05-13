@@ -66,20 +66,23 @@ describe("EventEmitter", function() {
         expect(foo).toBe(0);
     });
 
-    it('Emit calls registered callbacks with event.', function() {
-        var evt;
-        var foo = function(e) { evt = e; };
+    it('Emit calls registered callbacks with specified arguments.', function() {
+        var a, b;
+        var foo = function(x, y) {
+            a = x;
+            b = y;
+        };
 
         ee.on('bar', foo);
         ee.on('baz', foo);
 
         ee.emit('bar');
-        expect(evt).not.toBeUndefined();
-        expect(evt).toBe('bar');
+        expect(a).toBeUndefined();
+        expect(b).toBeUndefined();
 
-        ee.emit('baz');
-        expect(evt).not.toBeUndefined();
-        expect(evt).toBe('baz');
+        ee.emit('bar', 1, 2);
+        expect(a).toBe(1);
+        expect(b).toBe(2);
     });
 
     it('emit has trigger alias', function() {
