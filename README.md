@@ -26,3 +26,8 @@ An excuse to try out `karma` and writing unit tests in javascript.
     ee.off('foo', handleFoo);
     ee.emit('foo')
     // foo = 1
+
+## Run tests
+
+    $ npm install
+    $ make tests
