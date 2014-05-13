@@ -67,6 +67,18 @@ EventEmitter.prototype.off = function(event, callback) {
 
 
 /**
+ * Remove all callbacks for event.
+ * @param {string} event
+ */
+EventEmitter.prototype.offAll = function(event) {
+    var callbacks = this.getListeners_(event);
+    while (callbacks.length) {
+        callbacks.pop();
+    }
+};
+
+
+/**
  * Emit event.
  * Calls all registered callbacks with the provided arguments
  * @param {string} event
@@ -85,4 +97,5 @@ EventEmitter.prototype.emit = function(event) {
 EventEmitter.prototype.listen = EventEmitter.prototype.on;
 EventEmitter.prototype.listenOnce = EventEmitter.prototype.once;
 EventEmitter.prototype.unlisten = EventEmitter.prototype.off;
+EventEmitter.prototype.unlistenAll = EventEmitter.prototype.offAll;
 EventEmitter.prototype.trigger = EventEmitter.prototype.emit;

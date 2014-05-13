@@ -56,6 +56,20 @@ describe("EventEmitter", function() {
         expect(y).toBe(1);
     });
 
+    it('offAll unbinds all callbacks for an event', function() {
+        var foo = 0;
+        var handleFoo = function() { foo += 1; };
+        var handleFoo2 = function() { foo += 1; };
+        var handleFoo3 = function() { foo += 1; };
+
+        ee.once('foo', handleFoo);
+        ee.on('foo', handleFoo2);
+        ee.on('foo', handleFoo3);
+
+        ee.offAll('foo');
+        expect(x).toBe(0);
+    });
+
     it('Does not fire callbacks that have been unbound (once)', function() {
         var foo = 0;
         var handleFoo = function() { foo += 1; };
@@ -125,5 +139,19 @@ describe("EventEmitter", function() {
 
         ee.emit('y');
         expect(y).toBe(1);
+    });
+
+    it('offAll has unlistenAll alias', function() {
+        var foo = 0;
+        var handleFoo = function() { foo += 1; };
+        var handleFoo2 = function() { foo += 1; };
+        var handleFoo3 = function() { foo += 1; };
+
+        ee.once('foo', handleFoo);
+        ee.on('foo', handleFoo2);
+        ee.on('foo', handleFoo3);
+
+        ee.unlistenAll('foo');
+        expect(x).toBe(0);
     });
 });
