@@ -56,6 +56,20 @@ describe("EventEmitter", function() {
         expect(y).toBe(1);
     });
 
+    it('.once does not cause other callbacks to not be fired.', function() {
+        var foo = 0;
+        var handleFoo = function() { foo += 1; };
+        var handleFoo2 = function() { foo += 1; };
+        var handleFoo3 = function() { foo += 1; };
+
+        ee.once('foo', handleFoo);
+        ee.on('foo', handleFoo2);
+        ee.on('foo', handleFoo3);
+
+        ee.emit('foo');
+        expect(foo).toBe(3);
+    });
+
     it('offAll unbinds all callbacks for an event', function() {
         var foo = 0;
         var handleFoo = function() { foo += 1; };

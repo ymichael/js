@@ -55,7 +55,6 @@ EventEmitter.prototype.once = function(event, callback) {
  */
 EventEmitter.prototype.off = function(event, callback) {
     var callbacks = this.getListeners_(event);
-
     for (var i = 0; i < callbacks.length; i++) {
         var cb = callbacks[i];
         if (cb == callback || cb.func == callback) {
@@ -85,7 +84,7 @@ EventEmitter.prototype.offAll = function(event) {
  * @param {...} args Arguments to pass on to the callback.
  */
 EventEmitter.prototype.emit = function(event) {
-    var callbacks = this.getListeners_(event);
+    var callbacks = this.getListeners_(event).slice(0);
     for (var i = 0; i < callbacks.length; i++) {
         var cb = callbacks[i];
         cb.apply(null, Array.prototype.slice.call(arguments, 1));
